@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CBLite-Doc</string>
+
+    <string name="prompt_1">
+        You are an intelligent search engine. You will be provided with some retrieved context, as well as the users query.
+Your job is to understand the request, and answer based on the retrieved context.
+
+Here is the retrieved context
+--------------------------------------------------
+$CONTEXT
+--------------------------------------------------
+Here is the user\'s query: $QUERY
+    </string>
+</resources>
