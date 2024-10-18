@@ -1,12 +1,12 @@
-// package com.ml.couchbase.docqa.data
+package com.ml.couchbase.docqa.data
 
-// import kotlinx.coroutines.Dispatchers
-// import kotlinx.coroutines.ExperimentalCoroutinesApi
-// import kotlinx.coroutines.flow.Flow
-// import kotlinx.coroutines.flow.flow
-// import kotlinx.coroutines.flow.flowOn
-// import com.couchbase.lite.Function
-// import com.couchbase.lite.*
+//import kotlinx.coroutines.Dispatchers
+//import kotlinx.coroutines.ExperimentalCoroutinesApi
+//import kotlinx.coroutines.flow.Flow
+//import kotlinx.coroutines.flow.flow
+//import kotlinx.coroutines.flow.flowOn
+//import com.couchbase.lite.Function
+//import com.couchbase.lite.*
 
 // class DocumentsDB {
 
@@ -60,13 +60,18 @@
 
 
 
-package com.ml.couchbase.docqa.data
+//package com.ml.couchbase.docqa.data
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import com.couchbase.lite.Function
+import com.couchbase.lite.*
 
 class DocumentsDB {
-    private val database: MockDatabase = DatabaseManager.getDatabase()
+    private val database: Database = DatabaseManager.getDatabase()
 
     fun addDocument(document: Document): String {
         // Placeholder implementation

@@ -1,4 +1,4 @@
-// package com.ml.couchbase.docqa.data
+ package com.ml.couchbase.docqa.data
 
 // import com.couchbase.lite.*
 // import com.couchbase.lite.VectorEncoding
@@ -95,10 +95,14 @@
 
 
 
-package com.ml.couchbase.docqa.data
+//package com.ml.couchbase.docqa.data
+
+import com.couchbase.lite.*
+import com.couchbase.lite.VectorEncoding
+import com.couchbase.lite.VectorIndexConfiguration
 
 class ChunksDB {
-    private val database: MockDatabase = DatabaseManager.getDatabase()
+    private val database: Database = DatabaseManager.getDatabase()
 
     fun addChunk(chunk: Chunk) {
         // Placeholder implementation
