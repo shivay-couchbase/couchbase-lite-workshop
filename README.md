@@ -3,8 +3,7 @@
 1. Clone the `main` branch, 
 
 ```bash
-git clone --depth=1 https://github.com/couchbase/kotlin-cblite-vector-search-rag
-cd cblite-kotlin-vector-search
+git clone --depth=1 https://github.com/couchbase/couchbase-lite-workshop
 ```
 
 2. [Get an API key from Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key) to use the Gemini API. Copy 
