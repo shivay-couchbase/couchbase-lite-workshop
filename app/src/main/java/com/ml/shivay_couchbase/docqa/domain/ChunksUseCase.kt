@@ -29,10 +29,10 @@ constructor(private val chunksDB: ChunksDB, private val sentenceEncoder: Sentenc
         chunksDB.removeChunks(docId)
     }
 
-    // fun getSimilarChunks(query: String, n: Int = 5): List<Pair<Float, Chunk>> {
-    //     val queryEmbedding = sentenceEncoder.encodeText(query)
-    //     return chunksDB.getSimilarChunks(queryEmbedding, n)
-    // }
+    fun getSimilarChunks(query: String, n: Int = 5): List<Pair<Float, Chunk>> {
+        val queryEmbedding = sentenceEncoder.encodeText(query)
+        return chunksDB.getSimilarChunks(queryEmbedding, n)
+    }
 }
 
 

@@ -9,17 +9,17 @@ class ChunksDB {
     private val database: Database = DatabaseManager.getDatabase()
     private val INDEX_NAME = "chunk_embedding_index"
 
-    // init {
-    //     // Create an index if it doesn't exist
-    //     createVectorIndex()
-    // }
+    init {
+        // Create an index if it doesn't exist
+        createVectorIndex()
+    }
 
-    // private fun createVectorIndex() {
-    //     // Create a vector index on chunkEmbedding field with VectorIndexConfiguration
-    //     val config = VectorIndexConfiguration("chunkEmbedding", 384, 3) // assuming embedding size of 128
-    //     config.encoding = VectorEncoding.none()  // Customize based on how you encoded vectors (none, normalized, etc.)
-    //     database.createIndex(INDEX_NAME, config)
-    // }
+    private fun createVectorIndex() {
+        // Create a vector index on chunkEmbedding field with VectorIndexConfiguration
+        val config = VectorIndexConfiguration("chunkEmbedding", 384, 3) // assuming embedding size of 128
+        config.encoding = VectorEncoding.none()  // Customize based on how you encoded vectors (none, normalized, etc.)
+        database.createIndex(INDEX_NAME, config)
+    }
 
     fun addChunk(chunk: Chunk) {
         val mutableDoc = MutableDocument()
@@ -31,50 +31,50 @@ class ChunksDB {
         database.save(mutableDoc)
     }
 
-// fun getSimilarChunks(queryEmbedding: FloatArray, n: Int = 5): List<Pair<Float, Chunk>> {
-//     // SQL query to find similar chunks using the vector index
-//     val sql = """
-//     SELECT docFileName, chunkData, chunkEmbedding, APPROX_VECTOR_DISTANCE(chunkEmbedding, ${'$'}embeddingArray ) as distance
-//     FROM ${database.name}
-//     ORDER BY distance
-//     LIMIT $n
-//     """
-//     val query = database.createQuery(sql)
+fun getSimilarChunks(queryEmbedding: FloatArray, n: Int = 5): List<Pair<Float, Chunk>> {
+    // SQL query to find similar chunks using the vector index
+    val sql = """
+    SELECT docFileName, chunkData, chunkEmbedding, APPROX_VECTOR_DISTANCE(chunkEmbedding, ${'$'}embeddingArray ) as distance
+    FROM ${database.name}
+    ORDER BY distance
+    LIMIT $n
+    """
+    val query = database.createQuery(sql)
 
-//     // Convert FloatArray to a MutableArray for embedding
-//     val embeddingArray = MutableArray().apply {
-//         queryEmbedding.forEach { addFloat(it) }
-//     }
+    // Convert FloatArray to a MutableArray for embedding
+    val embeddingArray = MutableArray().apply {
+        queryEmbedding.forEach { addFloat(it) }
+    }
 
-//     // Set the query parameter using positional binding
-//     query.parameters = Parameters().apply {
-//         setArray("embeddingArray", embeddingArray)  // Bind the vector embedding to the first positional parameter (?)
-//     }
+    // Set the query parameter using positional binding
+    query.parameters = Parameters().apply {
+        setArray("embeddingArray", embeddingArray)  // Bind the vector embedding to the first positional parameter (?)
+    }
 
-//     // Execute the query and gather results
-//     val chunksWithScores = mutableListOf<Pair<Float, Chunk>>()
-//     query.execute().use { resultSet ->
-//         for (result in resultSet) {
-//             val docFileName = result.getString("docFileName") ?: ""
-//             val chunkData = result.getString("chunkData") ?: ""
-//             val chunkEmbeddingArray = result.getArray("chunkEmbedding") ?: MutableArray()
-//             val distance = result.getFloat("distance")
+    // Execute the query and gather results
+    val chunksWithScores = mutableListOf<Pair<Float, Chunk>>()
+    query.execute().use { resultSet ->
+        for (result in resultSet) {
+            val docFileName = result.getString("docFileName") ?: ""
+            val chunkData = result.getString("chunkData") ?: ""
+            val chunkEmbeddingArray = result.getArray("chunkEmbedding") ?: MutableArray()
+            val distance = result.getFloat("distance")
 
-//             val chunkEmbedding = FloatArray(chunkEmbeddingArray.count()) { i ->
-//                 chunkEmbeddingArray.getFloat(i)
-//             }
+            val chunkEmbedding = FloatArray(chunkEmbeddingArray.count()) { i ->
+                chunkEmbeddingArray.getFloat(i)
+            }
 
-//             val chunk = Chunk(
-//                 chunkId = 0,  // Handle chunk ID as per your needs
-//                 docFileName = docFileName,
-//                 chunkData = chunkData,
-//                 chunkEmbedding = chunkEmbedding
-//             )
-//             chunksWithScores.add(Pair(distance, chunk))
-//         }
-//     }
-//     return chunksWithScores
-// }
+            val chunk = Chunk(
+                chunkId = 0,  // Handle chunk ID as per your needs
+                docFileName = docFileName,
+                chunkData = chunkData,
+                chunkEmbedding = chunkEmbedding
+            )
+            chunksWithScores.add(Pair(distance, chunk))
+        }
+    }
+    return chunksWithScores
+}
 
 
 
