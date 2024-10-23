@@ -3,7 +3,7 @@
 1. Clone the `main` branch, 
 
 ```bash
-git clone https://github.com/couchbase/couchbase-lite-workshop
+git clone https://github.com/shivay-couchbase/couchbase-lite-workshop.git
 ```
 
 2. [Get an API key from Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key) to use the Gemini API. Copy 
