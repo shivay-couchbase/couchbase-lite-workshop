@@ -1,4 +1,6 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -8,7 +10,18 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
-val geminiKey: String = gradleLocalProperties(rootDir, providers).getProperty("geminiKey")
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
+} else {
+    val defaultPropertiesFile = rootProject.file("local.properties.default")
+    if (defaultPropertiesFile.exists()) {
+        localProperties.load(FileInputStream(defaultPropertiesFile))
+    }
+}
+
+val geminiKey: String = localProperties.getProperty("geminiKey") ?: ""
 
 android {
     namespace = "com.ml.couchbase.docqa"

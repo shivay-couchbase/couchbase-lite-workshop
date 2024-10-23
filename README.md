@@ -6,14 +6,12 @@
 git clone https://github.com/shivay-couchbase/couchbase-lite-workshop.git
 ```
 
-2. [Get an API key from Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key) to use the Gemini API. Copy 
-the key and paste it in `local.properties` present in the root directory of the project,
+2. If `local.properties` doesn't exist, the build will use a default empty API key. To use the Gemini API, make sure to add your actual API key to `local.properties`.
 
+If you don't have a `local.properties` file, create one in the root directory of the project and add your Gemini API key:
 ```
-geminiKey=""
+geminiKey="YOUR_ACTUAL_API_KEY_HERE"
 ```
 
-Perform a Gradle sync, and run the application. 
 
-
-
+3. Perform a Gradle sync, and run the application. 
