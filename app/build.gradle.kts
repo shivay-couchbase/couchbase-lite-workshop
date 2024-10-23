@@ -49,10 +49,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField( "String" , "geminiKey" , geminiKey)
+                buildConfigField("String", "geminiKey", "\"${geminiKey}\"")
         }
         debug {
-            buildConfigField( "String" , "geminiKey" , geminiKey)
+            buildConfigField("String", "geminiKey", "\"${geminiKey}\"")
         }
     }
     compileOptions {
