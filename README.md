@@ -4,6 +4,8 @@ Instructions: https://docs.google.com/document/d/1QJS9MUaofSC1RfGFxzJVprY25D2S4c
 
 Slides: https://docs.google.com/presentation/d/1MCuynF-6yunOLyFz5y9WTeFj9_np8ZWR/edit?usp=sharing&ouid=117579161492281663932&rtpof=true&sd=true
 
+Model: https://www.kaggle.com/models/google/gemma-2/tfLite
+
 ## Setup
 
 1. Clone the `main` branch, 
