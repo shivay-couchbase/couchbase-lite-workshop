@@ -1,3 +1,7 @@
+## Instructions to follow the Workshop
+
+Instructions: https://docs.google.com/document/d/1QJS9MUaofSC1RfGFxzJVprY25D2S4c3a631HJRSiKEY/edit?usp=sharing
+
 ## Setup
 
 1. Clone the `main` branch, 
